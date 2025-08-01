@@ -84,10 +84,17 @@ final class UrlLauncher implements UrlLauncherApi {
     ensureActivity();
     assert activity != null;
 
+    Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
+    ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent,PackageManager.MATCH_DEFAULT_ONLY);
+
+    // This is the default browser's packageName
+    String browserPackageName = resolveInfo.activityInfo.packageName;
+
     Intent launchIntent =
         new Intent(Intent.ACTION_VIEW)
             .setData(Uri.parse(url))
             .putExtra(Browser.EXTRA_HEADERS, extractBundle(headers));
+    launchIntent.setPackage(browserPackageName);
     try {
       activity.startActivity(launchIntent);
     } catch (ActivityNotFoundException e) {
