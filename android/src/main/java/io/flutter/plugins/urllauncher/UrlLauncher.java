@@ -4,6 +4,8 @@
 
 package io.flutter.plugins.urllauncher;
 
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
