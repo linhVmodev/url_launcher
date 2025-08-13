@@ -87,7 +87,7 @@ final class UrlLauncher implements UrlLauncherApi {
     assert activity != null;
 
     Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
-    ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent,PackageManager.MATCH_DEFAULT_ONLY);
+    ResolveInfo resolveInfo = applicationContext.getPackageManager().resolveActivity(browserIntent,PackageManager.MATCH_DEFAULT_ONLY);
 
     // This is the default browser's packageName
     String browserPackageName = resolveInfo.activityInfo.packageName;
